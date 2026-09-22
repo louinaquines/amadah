@@ -8,6 +8,173 @@
   --line: rgba(95, 90, 60, 0.28);
 }
 
+/* Final responsive layout contract. */
+@media (max-width: 640px) {
+  main,
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section,
+  .order-section,
+  .footer-section {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 84px 20px 60px;
+    gap: 32px;
+  }
+
+  .hero-copy,
+  .hero-media,
+  .story-content,
+  .story-content > .scroll-reveal,
+  .order-section > .scroll-reveal,
+  .footer-section > .scroll-reveal {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .hero-media {
+    flex: 0 0 auto;
+    height: clamp(320px, 85vw, 420px);
+  }
+
+  .story-content {
+    display: block;
+  }
+
+  .menu-carousel {
+    width: calc(100% + 40px);
+    max-width: none;
+    margin-left: -20px;
+  }
+
+  .quote-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 65px 20px 85px;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sticky-order {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 960px) {
+  main,
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section,
+  .order-section,
+  .footer-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(24px, 4vw, 40px);
+    padding: 100px 32px 75px;
+    align-items: center;
+  }
+
+  .hero-copy,
+  .hero-media,
+  .story-content,
+  .order-section > .scroll-reveal,
+  .footer-section > .scroll-reveal {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero-media {
+    width: 100%;
+    height: clamp(380px, 46vw, 470px);
+  }
+
+  .story-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 42px;
+  }
+
+  .order-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 75px 32px;
+  }
+
+  .sticky-order {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 961px) {
+  main,
+  footer {
+    width: 100%;
+  }
+
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section {
+    width: min(100% - 64px, 1180px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(340px, 480px);
+  }
+
+  .order-section,
+  .footer-section {
+    width: 100%;
+  }
+}
+
+/* The page-level children must fill the body; only their inner content gets
+   a max-width. This prevents a narrow parent from propagating through every
+   section on mobile browsers. */
+body > main,
+body > footer {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin-inline: 0;
+}
+
+@media (max-width: 960px) {
+  .staggered-menu-wrapper,
+  .staggered-menu-header {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -17,18 +184,27 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-  overflow-x: clip;
+  width: 100%;
+  min-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  min-width: 100%;
   background: var(--parchment);
   color: var(--espresso);
-  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
+  font-family:
+    var(--font-body),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   font-size: 16px;
   line-height: 1.55;
-  overflow-x: clip;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,7 +214,9 @@ body.mobile-menu-open {
 }
 
 main {
-  overflow-x: clip;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 img,
@@ -212,7 +390,9 @@ em {
   .site-nav a:not(.button) {
     color: var(--espresso);
     opacity: 0.82;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
     padding: 6px 2px;
   }
 
@@ -238,6 +418,7 @@ em {
     top: 0;
     left: 0;
     right: 0;
+    overflow: visible;
     z-index: 50;
     pointer-events: none;
   }
@@ -245,6 +426,7 @@ em {
   .staggered-menu-wrapper.is-open {
     position: fixed;
     inset: 0;
+    overflow: visible;
     z-index: 100;
   }
 
@@ -366,11 +548,13 @@ em {
     pointer-events: auto;
     overflow-y: auto;
     visibility: hidden;
+    display: none;
   }
 
   .staggered-menu-wrapper.is-open .staggered-menu-panel {
     transform: translateX(0);
     visibility: visible;
+    display: block;
   }
 
   .sm-panel-inner {
@@ -570,6 +754,76 @@ em {
   }
 }
 
+/* Keep the document shell tied to the visual viewport. This prevents
+   intrinsic grid/flex sizing from leaving a narrow content column beside an
+   otherwise full-width page on mobile browsers and zoomed views. */
+@media (max-width: 960px) {
+  html,
+  body,
+  main,
+  footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  main,
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section,
+  .order-section,
+  .footer-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-copy,
+  .story-content,
+  .section-heading,
+  .quote-grid,
+  .order-copy,
+  .order-details,
+  .footer-brand,
+  .footer-verse {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .menu-carousel {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    align-items: stretch;
+  }
+
+  .hero > .hero-copy,
+  .hero > .hero-media,
+  .story-content > .scroll-reveal,
+  .order-section > .scroll-reveal,
+  .footer-section > .scroll-reveal {
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    flex: 0 0 100%;
+    align-self: stretch;
+  }
+
+  .story-content > .scroll-reveal > *,
+  .order-section > .scroll-reveal > *,
+  .footer-section > .scroll-reveal > * {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+}
+
 .hero-copy {
   max-width: 570px;
 }
@@ -748,12 +1002,24 @@ em {
   transform-origin: 0 50%;
 }
 
-.click-spark i:nth-child(1) { --spark-angle: 0deg; }
-.click-spark i:nth-child(2) { --spark-angle: 60deg; }
-.click-spark i:nth-child(3) { --spark-angle: 120deg; }
-.click-spark i:nth-child(4) { --spark-angle: 180deg; }
-.click-spark i:nth-child(5) { --spark-angle: 240deg; }
-.click-spark i:nth-child(6) { --spark-angle: 300deg; }
+.click-spark i:nth-child(1) {
+  --spark-angle: 0deg;
+}
+.click-spark i:nth-child(2) {
+  --spark-angle: 60deg;
+}
+.click-spark i:nth-child(3) {
+  --spark-angle: 120deg;
+}
+.click-spark i:nth-child(4) {
+  --spark-angle: 180deg;
+}
+.click-spark i:nth-child(5) {
+  --spark-angle: 240deg;
+}
+.click-spark i:nth-child(6) {
+  --spark-angle: 300deg;
+}
 
 .click-spark.is-active i {
   animation: spark-burst 0.55s ease-out both;
@@ -1594,5 +1860,152 @@ em {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+}
+
+/* Final responsive layout contract applied after the component rules. */
+@media (max-width: 640px) {
+  main,
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section,
+  .order-section,
+  .footer-section {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 84px 20px 60px;
+    gap: 32px;
+  }
+
+  .hero-copy,
+  .hero-media,
+  .story-content,
+  .story-content > .scroll-reveal,
+  .order-section > .scroll-reveal,
+  .footer-section > .scroll-reveal {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .hero-media {
+    flex: 0 0 auto;
+    height: clamp(320px, 85vw, 420px);
+  }
+
+  .story-content {
+    display: block;
+  }
+
+  .menu-carousel {
+    width: calc(100% + 40px);
+    max-width: none;
+    margin-left: -20px;
+  }
+
+  .quote-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 65px 20px 85px;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sticky-order {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 960px) {
+  main,
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section,
+  .order-section,
+  .footer-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(24px, 4vw, 40px);
+    padding: 100px 32px 75px;
+    align-items: center;
+  }
+
+  .hero-copy,
+  .hero-media,
+  .story-content,
+  .order-section > .scroll-reveal,
+  .footer-section > .scroll-reveal {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero-media {
+    width: 100%;
+    height: clamp(380px, 46vw, 470px);
+  }
+
+  .story-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 42px;
+  }
+
+  .order-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 75px 32px;
+  }
+
+  .sticky-order {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 961px) {
+  main,
+  footer {
+    width: 100%;
+  }
+
+  .hero,
+  .story-section,
+  .menu-section,
+  .testimonials-section {
+    width: min(100% - 64px, 1180px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(340px, 480px);
+  }
+
+  .order-section,
+  .footer-section {
+    width: 100%;
   }
 }
