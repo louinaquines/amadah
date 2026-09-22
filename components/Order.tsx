@@ -4,7 +4,7 @@ export default function Order() {
   return (
     <section className="order-section" id="order">
       <ScrollReveal variant="left">
-        <div>
+        <div className="order-copy">
           <p className="eyebrow">Ready when you are</p>
           <h2>
             Let’s get something
