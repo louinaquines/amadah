@@ -1421,6 +1421,11 @@ em {
   box-shadow: 0 4px 14px rgba(42, 32, 19, 0.05);
 }
 
+.quote-grid > .scroll-reveal,
+.quote-grid > .scroll-reveal > .quote {
+  height: 100%;
+}
+
 .quote blockquote {
   font-family: var(--font-display), Georgia, serif;
   font-size: clamp(20px, 2.2vw, 23px);
