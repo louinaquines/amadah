@@ -19,7 +19,17 @@ export default function Footer() {
           <span>Psalm 136:25</span>
         </div>
       </ScrollReveal>
-      <small>© 2026 AmaDah Pastries · Balamban Cebu / Mandaue City</small>
+      <small>
+        © 2026 AmaDah Pastries · Balamban Cebu / Mandaue City ·{" "}
+        <a
+          className="footer-credit"
+          href="https://louinaquines.online"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Made by Loui Naquines
+        </a>
+      </small>
     </footer>
   );
 }

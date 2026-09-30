@@ -1632,6 +1632,19 @@ em {
   font-size: 13px;
 }
 
+.footer-credit {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer-credit:hover,
+.footer-credit:focus-visible {
+  color: var(--caramel);
+}
+
 /* ==========================================================================
    Sticky Mobile / Tablet Order Bar
    ========================================================================== */
